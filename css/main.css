@@ -4,3 +4,8 @@
     text-align: center;
     border-radius: 30px;
 }
+.jua-regular {
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

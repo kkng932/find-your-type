@@ -1,37 +1,24 @@
 const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
-const endPoint = 12;
+const endPoint = 7;
 // 질문 답 배열
-const select = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]; 
-const resultType = [ 0, 0, 0, 0 ];
+const select = [ 0, 0, 0, 0, 0, 0, 0]; 
+resultType = 0;
 
 // 결과 내기
 function calResult(){
-    let resultKey = 1;
-    if( resultType[0] < 2 ) resultKey += 8;
-    if( resultType[1] < 2 ) resultKey += 4;
-    if( resultType[2] < 2 ) resultKey += 2;
-    if( resultType[3] < 2 ) resultKey += 1;
+    let resultKey = 0;
+    if (resultType <= -5) resultKey = 0;
+    else if (resultType <= -1) resultKey = 1;
+    else if (resultType <= 3) resultKey = 2;
+    else resultKey = 3;
     console.log('resultKey=' + resultKey);
     return resultKey;
 }
 function setResult(){
     let point = calResult();
     location.href = "./html/result" + point + '.html';
-    // const resultName = document.querySelector('.resultName');
-    // resultName.innerHTML = infoList[point].name;
-
-    // var resultImg = document.createElement('img');
-    // const imgDiv = document.querySelector('#resultImg');
-    // var imgURL = '../img/image' + point + '.png';
-    // resultImg.src = imgURL;
-    // resultImg.alt = point;
-    // resultImg.classList.add('img-fluid');
-    // imgDiv.appendChild(resultImg);
-
-    // const resultDesc = document.querySelector('.resultDesc');
-    // resultDesc.innerHTML = infoList[point].desc;
 }
 
 // 질문 끝
@@ -70,23 +57,21 @@ function addAnswer(answerText, qIndex, index){
         }
         select[qIndex] = Number(index) + Number(select[qIndex]);
         // 대답 결과 알고리즘
-        if (qIndex === 1 || qIndex === 6 || qIndex === 10 )
+        if (qIndex === 2 || qIndex === 5)
         {
-            resultType[0] = Number(index) + Number(resultType[0]);
+            if (Number(index) == 0)
+                resultType--;
+            else
+                resultType++;
         }
-        else if (qIndex === 5 || qIndex === 7 || qIndex === 11 )
+        else 
         {
-            resultType[1] = Number(index) + Number(resultType[1]);
+            if (Number(index) == 0)
+                resultType++;
+            else
+                resultType--;
         }
-        else if (qIndex === 3 || qIndex === 4 || qIndex === 8 )
-        {
-            resultType[2] = Number(index) + Number(resultType[2]);
-        }
-        else
-        {
-            resultType[3] = Number(index) + Number(resultType[3]);
-        }
-        
+        console.log(resultType);
         goNext(++qIndex);
     }, false);
 }
