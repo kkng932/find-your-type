@@ -9,10 +9,10 @@ resultType = 0;
 // 결과 내기
 function calResult(){
     let resultKey = 0;
-    if (resultType <= -5) resultKey = 0;
-    else if (resultType <= -1) resultKey = 1;
-    else if (resultType <= 3) resultKey = 2;
-    else resultKey = 3;
+    if (resultType <= -5) resultKey = 1;
+    else if (resultType <= -1) resultKey = 2;
+    else if (resultType <= 3) resultKey = 3;
+    else resultKey = 4;
     console.log('resultKey=' + resultKey);
     return resultKey;
 }
